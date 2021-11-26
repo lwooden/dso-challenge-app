@@ -7,9 +7,9 @@ const router = new express.Router()
 
 router.get('/', async (req, res) => { 
 
- axios.get('https://dog-facts-api.herokuapp.com/api/v1/resources/dogs?number=1')
+ axios.get('https://cat-fact.herokuapp.com/facts')
  .then((response) => {
-    res.send(response.data)
+    res.send(response.data[0])
     console.log(res)})
  .catch((error) => console.log(error))
 
