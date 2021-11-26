@@ -7,6 +7,7 @@ This repo contains a very simple API, written in Node, that will serve as the de
 The API serves up (2) routes:
 
 /private - returns a JSON object that contains a hardcarded fact about dogs (who doesn't love dogs :))
-/public - performs a fetch to an external API that serves up a random fact about a wide range of topics and returns a JSON object with the fact inside. Each time you hit this endpoint the fact changes.
+
+/public - performs a fetch to an external API that serves up a random fact about dogs and returns a JSON object with the fact inside. Each time you hit this endpoint the fact changes.
 
 
