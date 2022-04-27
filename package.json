@@ -1,5 +1,5 @@
 {
-  "name": "mock-api-service",
+  "name": "sample-node-api-service",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
