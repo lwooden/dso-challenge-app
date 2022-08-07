@@ -1,14 +1,15 @@
 const express = require('express')
 const logger = require('morgan');
-const privateRouter = require('./routes/private')
-const publicRouter = require('./routes/public')
 const healthCheck = require('./routes/healthcheck')
+const v1Router = require('./routes/v1')
 
 const app = express()
 
+// Middleware Pipeline
+app.use(express.json());
+
 app.use(logger('dev'));
-app.use('/private', privateRouter) 
-app.use('/public', publicRouter)
-app.use('/service/health', healthCheck)
+app.use('/health', healthCheck)
+app.use('/v1/api', v1Router)
 
 module.exports = app
