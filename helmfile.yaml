@@ -1,0 +1,6 @@
+releases:
+- name: sample-node-local-k8
+  chart: ./helm_local
+  values:
+    - port: 9000
+  installed: false
