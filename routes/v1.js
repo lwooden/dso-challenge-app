@@ -16,11 +16,9 @@ router.get('/env', (req, res) => {
     let env = process.env.ENV
 
     if (!env) {
-        res.status(404).send("ENV is not set!")
+        res.status(404).send({environment: 'Undefined' })
     } else {
-        res.status(200).send({
-            message: `Looks like you are running in a ${env} environment!`
-        })
+        res.status(200).send({ environment: env })
     } 
 })
 
