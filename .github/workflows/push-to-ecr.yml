@@ -1,37 +1,35 @@
 name: push-to-public-ecr
 on: [push]
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-        steps:
-            # Check out repo inside of the container
-            - uses: actions/checkout@v3
+    steps:
+      # Check out repo inside of the container
+      - uses: actions/checkout@v3
 
+      # Set up AWS credentials by referencing secrets created for this repository
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
 
-            - name: Configure AWS credentials
-              uses: aws-actions/configure-aws-credentials@v1
-              with:
-                aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                aws-region: us-east-1
+      # Login in to public ECR
+      - name: Login to Amazon ECR
+        id: login-ecr-public
+        uses: aws-actions/amazon-ecr-login@v1
+        with:
+          registry-type: public
 
-        
-            - name: Login to Amazon ECR
-              id: login-ecr
-              uses: aws-actions/amazon-ecr-login@v1
-
-            # Build the container using the local Dockerfile and appedn the commit-sha to the image tag name
-            # Ubuntu latest contains all of the dependencies I need to build the container (see https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md)
-            - name: Build, tag, and push
-              env: 
-                ECR_REGISTRY: public.ecr.aws/mock-node-api
-                ECR_REPOSITORY: lowsandbox
-                IMAGE_TAG: sample-node-api-${{ github.sha }}
-              run: |
-                docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-                docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-
-
-
-
+      # Build the container using the local Dockerfile and appedn the commit-sha to the image tag name
+      # Ubuntu latest contains all of the dependencies I need to build the container (see https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md)
+      - name: Build, tag, and push
+        env:
+          ECR_REGISTRY: public.ecr.aws/mock-node-api
+          ECR_REPOSITORY: lowsandbox
+          IMAGE_TAG: sample-node-api-${{ github.sha }}
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
