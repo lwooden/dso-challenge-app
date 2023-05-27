@@ -8,6 +8,14 @@ jobs:
             # Check out repo inside of the container
             - uses: actions/checkout@v3
 
+
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                aws-region: us-east-1
+
             # Build the container using the local Dockerfile and appedn the commit-sha to the image tag name
             # Ubuntu latest contains all of the dependencies I need to build the container (see https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md)
             - name: Build, tag, and push
