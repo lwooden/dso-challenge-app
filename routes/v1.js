@@ -3,6 +3,9 @@ const axios = require('axios').default
 
 const router = new express.Router() 
 
+router.get('/health', (req, res) => {
+    res.status(200).send("Sample Node Service is healthy!")
+})
 
 router.get('/echo', (req, res) => {
     let term = req.query.term
