@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: public.ecr.aws/mock-node-api/node-mock-api:latest 
+  repository: public.ecr.aws/mock-node-api/lowsandbox:sample-node-api-7058262ae14ddac984f347cecee10d046b62850b
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
