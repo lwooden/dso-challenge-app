@@ -5,10 +5,16 @@ metadata:
   # annotations:
   #   service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
 spec:
-  type: NodePort
+  # type: NodePort
+  type: ClusterIP
   ports:
     - port: {{ .Values.service.port }}
       targetPort: {{ .Values.service.targetPort }}
       protocol: TCP
   selector:
+    # app: sample-node-service
+    {{- if eq .Release.Namespace "default" }}
     app: sample-node-service
+    {{ else }}
+    app: "sample-node-service-{{ .Release.Namespace }}"
+    {{- end }}
