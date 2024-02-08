@@ -67,12 +67,4 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.port }}
-          # AKS ingress will use the liveness/readiness check defined in the deployment/pod spec as the backend health check from the loadbalancer
-          # if not defined, Azure assumes the check should be performed on port 80 (http) at /
-          livenessProbe:
-          httpGet:
-            path: /health
-            port: {{ .Values.port }}
-          periodSeconds: 3
-          timeoutSeconds: 1
 

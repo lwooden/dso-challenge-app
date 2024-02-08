@@ -1,0 +1,11 @@
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: loadbalancer-backend-config
+spec:
+  # this CRD defines custom health check parameters as opposed to accepting Googles defaults which will cause
+  # your services health checks to fail out of the box
+  # Reference -> https://cloud.google.com/kubernetes-engine/docs/how-to/ingress-configuration#direct_health
+  healthCheck:
+    requestPath: "/health"
+ 

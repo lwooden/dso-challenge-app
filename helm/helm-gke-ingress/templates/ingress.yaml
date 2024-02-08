@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: default
+  name: node-gke-ingress
+  annotations:
+spec:
+  defaultBackend:
+    service:
+      name: node-service
+      port:
+        number: 80
