@@ -1,5 +1,5 @@
 # FROM node:17-alpine3.12
-FROM node:17-alpine3.19.1
+FROM node:current-alpine3.19
 
 RUN apk --no-cache update && \
     rm -rf /var/cache/apk/*
