@@ -1,0 +1,5 @@
+project: sample-node-api
+configVersion: 1
+---
+image: sample-node-api
+dockerfile: Dockerfile
