@@ -1,10 +1,9 @@
-const express = require('express')
+const express = require("express")
 
-const router = new express.Router() 
+const router = new express.Router()
 
-router.get('/', (req, res) => {
-    res.status(200).send("The Sample Node API Service is healthy!")
+router.get("/", (req, res) => {
+  res.status(200).send("The Sample Node API Service is healthy!")
 })
-
 
 module.exports = router
