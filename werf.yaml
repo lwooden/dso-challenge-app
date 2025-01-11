@@ -1,5 +1,10 @@
 project: samplenodeapi
 configVersion: 1
+# for EKS builds; local builds will default to linux/arm64 (Apple Silicon)
+# can also pass --platform linux/amd64 to werf build command
+# build:
+#   platform:
+#     - linux/amd64
 ---
 image: samplenodeapi
 dockerfile: Dockerfile
