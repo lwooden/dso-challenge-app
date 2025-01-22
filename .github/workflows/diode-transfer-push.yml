@@ -1,4 +1,4 @@
-name: Process Containers from Diode Transfer
+name: process-containers-from-diode-transfer
 on: workflow_dispatch
 
 jobs:
